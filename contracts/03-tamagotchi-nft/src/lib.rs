@@ -20,22 +20,22 @@ pub struct Tamagotchi {
 }
 impl Tamagotchi {
     fn current_fed(&self) -> u64 {
-        let hunger_per_block = HUNGER_PER_BLOCK as u64;
-        let block_height = exec::block_height() as u64;
+        let hunger_per_block = HUNGER_PER_BLOCK;
+        let block_height = exec::block_height();
         self.fed
             .saturating_sub(hunger_per_block * (block_height - self.fed_block))
     }
 
     fn current_entertained(&self) -> u64 {
-        let boredom_per_block = BOREDOM_PER_BLOCK as u64;
-        let block_height = exec::block_height() as u64;
+        let boredom_per_block = BOREDOM_PER_BLOCK;
+        let block_height = exec::block_height();
         self.entertained
             .saturating_sub(boredom_per_block * (block_height - self.entertained_block))
     }
 
     fn current_slept(&self) -> u64 {
-        let energy_per_block = ENERGY_PER_BLOCK as u64;
-        let block_height = exec::block_height() as u64;
+        let energy_per_block = ENERGY_PER_BLOCK;
+        let block_height = exec::block_height();
         self.slept
             .saturating_sub(energy_per_block * (block_height - self.slept_block))
     }
