@@ -131,7 +131,7 @@ extern fn handle() {
             }
         }
     } else {
-        panic!("Heyyyyy no eres el dueño de este tamagotchi");
+        panic!("Heyyyyy no eres el duueño de este tamagotchi");
     }
 }
 #[no_mangle]
