@@ -27,10 +27,10 @@ pub struct Tamagotchi {
 pub enum TmgAction {
     // TODO: 0️⃣ Copy actions from previous lesson and push changes to the master branch
     Name,
-     Age,
-     Feed,
-     Entertain,
-     Sleep,
+    Age,
+    Feed,
+    Entertain,
+    Sleep,
     // TODO: 2️⃣ Add new actions
 }
 
@@ -40,10 +40,10 @@ pub enum TmgAction {
 pub enum TmgEvent {
     // TODO: 0️⃣ Copy events from previous lesson and push changes to the master branch
     Name(String),
-     Age(u64),
-     Fed,
-     Entertained,
-     Slept,
+    Age(u64),
+    Fed,
+    Entertained,
+    Slept,
     // TODO: 3️⃣ Add new events
 }
 
@@ -60,9 +60,9 @@ impl Metadata for ProgramMetadata {
 }
 
 pub const HUNGER_PER_BLOCK: u64 = 1;
- pub const BOREDOM_PER_BLOCK: u64 = 2;
- pub const ENERGY_PER_BLOCK: u64 = 2;
+pub const BOREDOM_PER_BLOCK: u64 = 2;
+pub const ENERGY_PER_BLOCK: u64 = 2;
 
- pub const FILL_PER_FEED: u64 = 1000;
- pub const FILL_PER_ENTERTAINMENT: u64 = 1000;
- pub const FILL_PER_SLEEP: u64 = 1000;
+pub const FILL_PER_FEED: u64 = 1000;
+pub const FILL_PER_ENTERTAINMENT: u64 = 1000;
+pub const FILL_PER_SLEEP: u64 = 1000;

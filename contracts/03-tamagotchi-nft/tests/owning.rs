@@ -16,7 +16,6 @@ fn smoke_test() {
         .payload(TmgEvent::Name(String::from("Goodmoring")));
     assert!(result.contains(&log));
     let _result = program.send(2, TmgAction::Age);
-   
 }
 
 #[test]
@@ -26,8 +25,7 @@ fn negative_smoke_test() {
     let program = Program::current(&sys);
     let payload = vec![1, 2, 3];
     let _result = program.send(2, payload);
-
-
+}
 #[test]
 fn interaction_test() {
     let sys = System::new();
@@ -46,7 +44,6 @@ fn interaction_test() {
     assert!(result.contains(&log));
 
     let _result = program.send(1, TmgAction::Sleep);
-
 }
 
 #[test]
@@ -54,6 +51,4 @@ fn owning_test() {
     let sys = System::new();
     sys.init_logger();
     let _program = Program::current(&sys);
-
- 
 }
