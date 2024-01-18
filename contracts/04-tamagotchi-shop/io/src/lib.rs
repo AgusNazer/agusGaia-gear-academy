@@ -5,34 +5,14 @@ use gmeta::{In, InOut, Out};
 use gstd::prelude::*;
 use gstd::ActorId;
 
-#[derive(Default, Encode, Decode, TypeInfo<TransactionId>)]
-#[codec(crate = gstd::codec)]
-#[scale_info(crate = gstd::scale_info)]
-
 type TransactionId = u64;
 type ReservationId = u64;
 type AttributeId = u64;
 
-pub struct Tamagotchi {
-    // TODO: 0️⃣ Copy fields from previous lesson and push changes to the master branch
-    // TODO: 2️⃣ Add new fields
-    pub name: String,
-    pub date_of_birth: u64,
-    pub owner: ActorId,
-    pub fed: u64,
-    pub fed_block: u64,
-    pub entertained: u64,
-    pub entertained_block: u64,
-    pub rested: u64,
-    pub rested_block: u64,
-    pub allowed_account: Option<ActorId>,
-    pub ft_contract_id: ActorId,
-    pub ft_transaction_id: TransactionId,
-    pub approve_transaction: Option<(TransactionId, ActorId, u128)>,
-    pub reservations: Vec<ReservationId>,
-}
-
-#[derive(Encode, Decode, TypeInfo<AttributeId>)]
+#[derive(Default, Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+#[derive(Encode, Decode, TypeInfo)]
 #[codec(crate = gstd::codec)]
 #[scale_info(crate = gstd::scale_info)]
 pub enum TmgAction {
@@ -73,6 +53,25 @@ pub enum TmgEvent {
     WantToSleep,
     MakeReservation,
     GasReserved,
+}
+
+pub struct Tamagotchi {
+    // TODO: 0️⃣ Copy fields from previous lesson and push changes to the master branch
+    // TODO: 2️⃣ Add new fields
+    pub name: String,
+    pub date_of_birth: u64,
+    pub owner: ActorId,
+    pub fed: u64,
+    pub fed_block: u64,
+    pub entertained: u64,
+    pub entertained_block: u64,
+    pub rested: u64,
+    pub rested_block: u64,
+    pub allowed_account: Option<ActorId>,
+    pub ft_contract_id: ActorId,
+    pub ft_transaction_id: TransactionId,
+    pub approve_transaction: Option<(TransactionId, ActorId, u128)>,
+    pub reservations: Vec<ReservationId>,
 }
 
 pub struct ProgramMetadata;
