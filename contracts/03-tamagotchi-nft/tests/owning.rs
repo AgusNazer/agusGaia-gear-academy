@@ -36,7 +36,7 @@ fn interaction_test() {
     let result = program.send(2, TmgAction::Feed);
     let log = Log::builder().dest(2).payload(TmgEvent::Fed);
     assert!(result.contains(&log));
-    let result = program.send(2, TmgAction::Entertain);
+    let result = program.send(2, TmgAction::Play);
     let log = Log::builder().dest(2).payload(TmgEvent::Entertained);
     assert!(result.contains(&log));
     let result = program.send(2, TmgAction::Sleep);
