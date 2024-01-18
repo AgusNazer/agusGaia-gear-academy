@@ -1,16 +1,16 @@
 #![no_std]
 
 use gmeta::Metadata;
+use gmeta::{In, InOut, Out};
 use gstd::prelude::*;
 use gstd::ActorId;
-use gmeta::{In, InOut, Out};
 
 #[derive(Default, Encode, Decode, TypeInfo<TransactionId>)]
 #[codec(crate = gstd::codec)]
 #[scale_info(crate = gstd::scale_info)]
 
-type TransactionId = u64; 
-type ReservationId = u64; 
+type TransactionId = u64;
+type ReservationId = u64;
 type AttributeId = u64;
 
 pub struct Tamagotchi {
