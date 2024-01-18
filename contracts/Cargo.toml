@@ -1,5 +1,5 @@
 [workspace.package]
-homepage = "https://academy.gear.foundation"
+homepage = "https://academy.gear.foundation/"
 authors = ["Gear Foundation <hello@gear.foundation>"]
 version = "0.3.3"
 license = "MIT"
@@ -28,6 +28,7 @@ gsdk = { git = "https://github.com/gear-tech/gear", tag = "v1.0.2" }
 gstd = { git = "https://github.com/gear-tech/gear", tag = "v1.0.2" }
 gtest = { git = "https://github.com/gear-tech/gear", tag = "v1.0.2" }
 
+
 sharded-fungible-token-io = { git = "https://github.com/gear-foundation/dapps", tag = "v1.0.2" }
 tamagotchi-io.path = "01-tamagotchi/io"
 tamagotchi-interaction-io.path = "02-tamagotchi-interaction/io"
@@ -40,7 +41,6 @@ tamagotchi-army-io.path = "06-tamagotchi-army/io"
 tokio = "1"
 
 # External binaries
-
 sharded-fungible-token = { git = "https://github.com/gear-foundation/dapps", tag = "v1.0.2" }
 sharded-fungible-token-logic = { git = "https://github.com/gear-foundation/dapps", tag = "v1.0.2" }
 sharded-fungible-token-storage = { git = "https://github.com/gear-foundation/dapps", tag = "v1.0.2" }
