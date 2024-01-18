@@ -92,7 +92,7 @@ extern fn handle() {
 
 #[no_mangle]
 extern fn state() {
-    // TODO: 0️⃣ Copy the `handle` function from the previous lesson and push changes to the master branch
+    // TODO: 0️⃣ Copy the `handle` functinn from the previous lesson and push changes to the master branch
     msg::reply(state_ref(), 0).expect("Failed to share state");
 }
 
