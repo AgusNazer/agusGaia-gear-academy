@@ -124,7 +124,7 @@ pub fn updated_field_value(
         field - total_value_to_rest
     } else {
         // If not, the given value is smaller, causing a negative result, one
-        // is returned instead.
+        // is returned instead
         1
     }
 }
