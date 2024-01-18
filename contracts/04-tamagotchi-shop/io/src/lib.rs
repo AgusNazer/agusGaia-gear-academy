@@ -9,12 +9,9 @@ type TransactionId = u64;
 type ReservationId = u64;
 type AttributeId = u64;
 
-#[derive(Default, Encode, Decode, TypeInfo)]
-#[codec(crate = gstd::codec)]
-#[scale_info(crate = gstd::scale_info)]
 #[derive(Encode, Decode, TypeInfo)]
-#[codec(crate = gstd::codec)]
-#[scale_info(crate = gstd::scale_info)]
+#[codec(crate = "gstd::codec")]
+#[scale_info(crate = "gstd::scale_info")]
 pub enum TmgAction {
     // TODO: 0️⃣ Copy actions from previous lesson and push changes to the master branch
     // TODO: 3️⃣ Add new actions
