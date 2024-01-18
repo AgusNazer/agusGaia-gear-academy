@@ -2,8 +2,10 @@
 
 use gmeta::Metadata;
 use gstd::prelude::*;
+use gstd::ActorId;
+use gmeta::In, Out;
 
-#[derive(Default, Encode, Decode, TypeInfo)]
+#[derive(Default, Encode, Decode, TypeInfo<TransactionId>)]
 #[codec(crate = gstd::codec)]
 #[scale_info(crate = gstd::scale_info)]
 pub struct Tamagotchi {
@@ -25,7 +27,7 @@ pub struct Tamagotchi {
     pub reservations: Vec<ReservationId>,
 }
 
-#[derive(Encode, Decode, TypeInfo)]
+#[derive(Encode, Decode, TypeInfo<AttributeId>)]
 #[codec(crate = gstd::codec)]
 #[scale_info(crate = gstd::scale_info)]
 pub enum TmgAction {
