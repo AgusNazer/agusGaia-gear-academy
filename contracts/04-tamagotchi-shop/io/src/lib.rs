@@ -1,9 +1,9 @@
 #![no_std]
 
 use gmeta::Metadata;
+use gmeta::{In, Out};
 use gstd::prelude::*;
 use gstd::ActorId;
-use gmeta::In, Out;
 
 #[derive(Default, Encode, Decode, TypeInfo<TransactionId>)]
 #[codec(crate = gstd::codec)]
