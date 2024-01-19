@@ -28,7 +28,7 @@ unsafe extern "C" fn init() {
         state: EscrowState::AwaitingPayment
     };
     ESCROW = Some(escrow);
-
+    
     msg::reply(String::from("Escrow created"), 0)
         .expect("");
 }
