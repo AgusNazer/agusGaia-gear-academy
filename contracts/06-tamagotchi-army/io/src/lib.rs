@@ -208,9 +208,9 @@ impl Tamagotchi {
 
 pub struct TamagotchiFactory;
 
-impl TamagotchiFactory {
-    pub fn new() -> Self {
-        TamagotchiFactory
+impl Default for TamagotchiFactory {
+    fn default() -> Self {
+        Self::new()
     }
 
     pub fn create_tamagotchi(&self, name: String, owner: ActorId) -> Tamagotchi {
