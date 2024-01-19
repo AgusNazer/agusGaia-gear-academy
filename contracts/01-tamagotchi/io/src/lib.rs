@@ -29,7 +29,7 @@ pub enum TmgAction {
 pub enum TmgEvent {
     // TODO: 3️⃣ Add `Name` and `Age` events that return the name and age
     Name(String),
-    Age(u64),
+    Age(u64), // //
 }
 
 pub struct ProgramMetadata;
