@@ -5661,8 +5661,6 @@ dependencies = [
  "gear-wasm-builder",
  "gstd",
  "gtest",
- "sharded-fungible-token-io",
- "store-io",
  "tamagotchi-army-io",
 ]
 
@@ -5672,6 +5670,8 @@ version = "0.3.3"
 dependencies = [
  "gmeta",
  "gstd",
+ "sharded-fungible-token-io",
+ "store-io",
 ]
 
 [[package]]
