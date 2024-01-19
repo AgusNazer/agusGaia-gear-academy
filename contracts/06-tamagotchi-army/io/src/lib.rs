@@ -208,9 +208,9 @@ impl Tamagotchi {
 
 pub struct TamagotchiFactory;
 
-impl Default for TamagotchiFactory {
-    fn default() -> Self {
-        Self::new()
+impl TamagotchiFactory {
+    pub fn new() -> Self {
+        TamagotchiFactory
     }
 
     pub fn create_tamagotchi(&self, name: String, owner: ActorId) -> Tamagotchi {
@@ -236,6 +236,13 @@ impl Default for TamagotchiFactory {
     }
 
     // Aquí puedes agregar más métodos según sea necesario
+}
+// Implementación del trait Default para TamagotchiFactory
+impl Default for TamagotchiFactory {
+    fn default() -> Self {
+        // Aquí simplemente llamamos al método `new`
+        Self::new()
+    }
 }
 
 #[derive(Encode, Decode, TypeInfo)]
