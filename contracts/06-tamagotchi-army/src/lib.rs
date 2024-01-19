@@ -2,14 +2,9 @@
 use gstd::{exec, msg, prelude::*, prog::ProgramGenerator, ActorId, CodeId};
 use tamagotchi_army_io::*;
 
-#[allow(unused_imports)]
-use gstd::prelude::*;
 static mut TAMAGOTCHI_FACTORY: Option<TamagotchiFactory> = None;
 
 #[no_mangle]
-extern fn init() {
-    // TODO: 0️⃣ Copy the `init` function from the previous lesson and push changes to the master branch
-}
 extern fn init() {
     let tamagotchi_code_id: CodeId =
         msg::load().expect("Unable to decode CodeId of the Escrow program");
@@ -20,7 +15,6 @@ extern fn init() {
     unsafe { TAMAGOTCHI_FACTORY = Some(tamagotchi_factory) };
 }
 
-// TODO: 0️⃣ Copy the `handle` function from the previous lesson and push changes to the master branch
 #[gstd::async_main]
 async fn main() {
     let action: TamagotchiFactoryAction = msg::load().expect("Unable to decode `FactoryAction`");
@@ -102,7 +96,6 @@ async fn main() {
 
 #[no_mangle]
 extern fn state() {
-    // TODO: 0️⃣ Copy the `handle` function from the previous lesson and push changes to the master branch
     msg::reply(state_ref(), 0).expect("Failed to share state");
 }
 

@@ -7,5 +7,4 @@ publish.workspace = true
 [dependencies]
 gmeta.workspace = true
 gstd.workspace = true
-sharded-fungible-token-io.workspace = true
-store-io.workspace = true
+tamagotchi-auto-io.workspace = true
