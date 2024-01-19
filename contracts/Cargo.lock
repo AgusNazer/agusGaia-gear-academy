@@ -5662,8 +5662,8 @@ dependencies = [
  "gstd",
  "gtest",
  "sharded-fungible-token-io",
+ "store-io",
  "tamagotchi-army-io",
- "tokio",
 ]
 
 [[package]]
