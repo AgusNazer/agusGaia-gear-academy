@@ -212,7 +212,7 @@ impl TamagotchiFactory {
     pub fn new() -> Self {
         TamagotchiFactory
     }
-
+    
     pub fn create_tamagotchi(&self, name: String, owner: ActorId) -> Tamagotchi {
         // Aquí puedes agregar lógica adicional si es necesario
         Tamagotchi {
@@ -236,11 +236,6 @@ impl TamagotchiFactory {
     }
 
     // Aquí puedes agregar más métodos según sea necesario
-}
-impl Default for TamagotchiFactory {
-    fn default() -> Self {
-        Self::new()
-    }
 }
 
 #[derive(Encode, Decode, TypeInfo)]
