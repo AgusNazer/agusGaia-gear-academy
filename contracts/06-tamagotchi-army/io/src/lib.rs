@@ -53,7 +53,7 @@ impl TamagotchiFactory {
             },
             0,
         )
-        .expect("Error during a reply `FactoryEvent::ProgramCreated`");
+        .expect(" Error during a reply `FactoryEvent::ProgramCreated`");
     }
 
     pub async fn get_tamagotchi_name(&self, tamagotchi_id: TamagotchiId) {
@@ -116,7 +116,7 @@ impl TamagotchiFactory {
         let tamagotchi_ans =
             Self::send_message(&tamagotchi_address, TmgAction::Transfer(new_owner)).await;
 
-        if let TmgEvent::Transferred(new_owner) = tamagotchi_ans {
+        if let TmgEvent::Transferred(_new_owner) = tamagotchi_ans {
             panic!("Incorrect answer from tamagotchi contract");
         }
 
@@ -128,7 +128,7 @@ impl TamagotchiFactory {
         let tamagotchi_ans =
             Self::send_message(&tamagotchi_address, TmgAction::Approve(user)).await;
 
-        if let TmgEvent::Approved(user) = tamagotchi_ans {
+        if let TmgEvent::Approved(_user) = tamagotchi_ans {
             panic!("Incorrect answer from tamagotchi contract");
         }
 

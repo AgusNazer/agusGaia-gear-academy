@@ -6,17 +6,19 @@ use tamagotchi_auto_io::*;
 
 static mut TAMAGOTCHI: Option<Tamagotchi> = None;
 
-static mut GAS_RESERVATIONS_HANDLERS: Option<GasResHandle> = None;
+// extra state to handle backup gas and delayed messages,
+//separated from the main state so as not to affect the flow of tasks
+static mut GAS_RESERVATIONS_HANDLERS: Option<GasReservationHandlers> = None;
 
 #[no_mangle]
 extern fn init() {
     // TODO: 0️⃣ Copy the `init` function from the previous lesson and push changes to the master branch
-    let tamagotchi_name: String = msg::load().expect("Error in init message");
+    let TmgInit { owner, name } = msg::load().expect("Error in init message");
     let block_height = blocks_height();
     let new_tamagotchi: Tamagotchi = Tamagotchi {
-        name: tamagotchi_name,
+        name,
         date_of_birth: block_height,
-        owner: msg::source(),
+        owner,
         fed: 5000,
         fed_block: block_height,
         entertained: 5000,
@@ -28,7 +30,7 @@ extern fn init() {
     };
     unsafe {
         TAMAGOTCHI = Some(new_tamagotchi);
-        GAS_RESERVATIONS_HANDLERS = Some(GasResHandle {
+        GAS_RESERVATIONS_HANDLERS = Some(GasReservationHandlers {
             contract_send_a_delayed_message: false,
             can_send_delayed_message: false,
         });
@@ -42,7 +44,7 @@ async fn main() {
     let type_message: TmgAction = msg::load().expect("error in load message");
 
     let tamagotchi = state_mut();
-    let GasResHandle {
+    let GasReservationHandlers {
         can_send_delayed_message,
         contract_send_a_delayed_message,
     } = handlers_state_mut();
@@ -198,7 +200,7 @@ fn state_mut() -> &'static mut Tamagotchi {
     unsafe { state.unwrap_unchecked() }
 }
 
-fn handlers_state_mut() -> &'static mut GasResHandle {
+fn handlers_state_mut() -> &'static mut GasReservationHandlers {
     let state = unsafe { GAS_RESERVATIONS_HANDLERS.as_mut() };
     debug_assert!(state.is_some(), "State is not initialized");
     unsafe { state.unwrap_unchecked() }

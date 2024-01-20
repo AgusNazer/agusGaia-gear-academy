@@ -17,7 +17,7 @@ pub const FILL_PER_SLEEP: u64 = 1000;
 pub const FILL_PER_FEED: u64 = 1000;
 pub const FILL_PER_ENTERTAINMENT: u64 = 1000;
 
-pub struct GasResHandle {
+pub struct GasReservationHandlers {
     pub contract_send_a_delayed_message: bool,
     pub can_send_delayed_message: bool,
 }
@@ -99,7 +99,7 @@ impl Tamagotchi {
     }
 
     pub async fn buy_attribute(&mut self, store_id: ActorId, attribute_id: AttributeId) {
-        let response = msg::send_for_reply_as::<_, StoreEvent>(
+        let store_response = msg::send_for_reply_as::<_, StoreEvent>(
             store_id,
             StoreAction::BuyAttribute { attribute_id },
             0,
@@ -108,7 +108,24 @@ impl Tamagotchi {
         .expect("Error in sending a message `FTokenAction::Message`")
         .await
         .expect("Error in decoding 'FTokenEvent'");
-        msg::reply(response, 0).expect("Error in sending reply 'StoreEvent' event");
+
+        if let StoreEvent::CompletePrevTx { attribute_id } = store_response {
+            msg::reply(TmgEvent::CompletePrevPurchase(attribute_id), 0)
+                .expect("Error sending reply");
+            return;
+        }
+
+        let StoreEvent::AttributeSold { success } = store_response else {
+            msg::reply(TmgEvent::ErrorDuringPurchase, 0).expect("Error sending reply");
+            return;
+        };
+
+        if success {
+            msg::reply(TmgEvent::ErrorDuringPurchase, 0).expect("Error sending reply");
+            return;
+        }
+
+        msg::reply(TmgEvent::AttributeBought(attribute_id), 0).expect("Error in sending reply");
     }
 
     pub async fn approve_tokens(&mut self, account: ActorId, amount: u128) {
@@ -211,11 +228,11 @@ impl Tamagotchi {
 #[scale_info(crate = gstd::scale_info)]
 pub enum TmgAction {
     // TODO: 0️⃣ Copy actions from previous lesson and push changes to the master branch
-    Name,
-    Age,
-    Feed,
-    Play,
-    Sleep,
+    Name,  //
+    Age,   //
+    Feed,  //
+    Play,  //
+    Sleep, //
     Transfer(ActorId),
     Approve(ActorId),
     RevokeApproval,
@@ -236,7 +253,7 @@ pub enum TmgAction {
     },
 }
 
-#[derive(Encode, Decode, TypeInfo)]
+#[derive(Encode, Decode, TypeInfo, Eq, PartialEq)]
 #[codec(crate = gstd::codec)]
 #[scale_info(crate = gstd::scale_info)]
 pub enum TmgEvent {
@@ -259,9 +276,17 @@ pub enum TmgEvent {
     FeedMe,
     PlayWithMe,
     WantToSleep,
-    AllGood,
+    AllGood, // extra field to return if the user check state
     MakeReservation,
     GasReserved,
+}
+
+#[derive(Encode, Decode, TypeInfo)]
+#[codec(crate = gstd::codec)]
+#[scale_info(crate = gstd::scale_info)]
+pub struct TmgInit {
+    pub owner: ActorId,
+    pub name: String,
 }
 
 pub struct ProgramMetadata;
@@ -288,8 +313,13 @@ pub fn updated_field_value(
 ) -> u64 {
     let total_value_to_rest = (blocks_height - field_block) * value_per_block;
     if field > total_value_to_rest {
+        // If the given value of the tamagotchi is greater than the value to be
+        // subtracted after a certain number of blocks, the update value is
+        // returned
         field - total_value_to_rest
     } else {
+        // If not, the given value is smaller, causing a negative result, one
+        // is returned instead.
         1
     }
 }
