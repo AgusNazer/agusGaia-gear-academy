@@ -7,4 +7,3 @@ publish.workspace = true
 [dependencies]
 gmeta.workspace = true
 gstd.workspace = true
-tamagotchi-auto-io.workspace = true
