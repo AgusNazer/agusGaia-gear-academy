@@ -1,9 +1,9 @@
 name: Frontend
 
 on:
-  pull_request:
-    branches: [master]
-    paths: [frontend/**]
+  # pull_request:
+  #   branches: [master]
+  #   paths: [frontend/**]
 
   push:
     branches: [master]
