@@ -10,7 +10,7 @@ pub type AttributeId = u32;
 const GAS_FOR_CREATION: u64 = 5_000_000_000; // 1_000_000_000;
 
 pub struct ProgramMetadata;
-
+//
 impl Metadata for ProgramMetadata {
     type Init = In<CodeId>;
     type Handle = InOut<TamagotchiFactoryAction, TamagotchiFactoryEvent>;
