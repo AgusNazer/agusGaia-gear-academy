@@ -5763,6 +5763,39 @@ dependencies = [
 ]
 
 [[package]]
+name = "tamagotchi-battle"
+version = "0.3.3"
+dependencies = [
+ "gclient",
+ "gear-wasm-builder",
+ "gstd",
+ "hex",
+ "tamagotchi",
+ "tamagotchi-battle-io",
+ "tamagotchi-battle-state",
+ "tamagotchi-io",
+ "tokio",
+]
+
+[[package]]
+name = "tamagotchi-battle-io"
+version = "0.3.3"
+dependencies = [
+ "gmeta",
+ "gstd",
+]
+
+[[package]]
+name = "tamagotchi-battle-state"
+version = "0.3.3"
+dependencies = [
+ "gear-wasm-builder",
+ "gmeta",
+ "gstd",
+ "tamagotchi-battle-io",
+]
+
+[[package]]
 name = "tamagotchi-interaction"
 version = "0.3.3"
 dependencies = [
